@@ -33,24 +33,60 @@ def send_mail(recipient: str, sender: str, subject: str, body: str) -> bool:
 
 def get_inbox(recipient: str) -> None:
     """TODO: fill out this docstring (using the send_mail docstring as a guide)
+
+    Retrieves the inbox of a specified user with the inputted string. The JSON body of the request contains the following key:
+    -recipient
+
+    Args:
+        recipient (str) : The recipient of the mail
+
+    Returns:
+        This function returns None
     """
     response = requests.get(f'{SERVER}/mail/inbox/{recipient}')
     pprint.pprint(response.json())
 
 def get_sent(sender: str) -> None:
     """TODO: fill out this docstring (using the send_mail docstring as a guide)
+
+    Retrieves the sent mail of a specified user with the inputted string. The JSON body of the request contains the following key:
+    -sender
+
+    Args:
+        sender (str): The sender of the mail
+
+    Returns:
+        This function returns None
     """
     response = requests.get(f'{SERVER}/mail/sent/{sender}')
     pprint.pprint(response.json())
 
 def get_mail(mail_id: str) -> None:
     """TODO: fill out this docstring (using the send_mail docstring as a guide)
+
+        Recites the details and message of a specific piece of mail specified by the inputted string. The JSON body of the request contains the following key:
+        -mail_id
+
+    Args:
+        mail_id (str): The unique id associated to each piece of mail sent.
+
+    Returns.
+        This function returns None.
     """
     response = requests.get(f'{SERVER}/mail/{mail_id}')
     pprint.pprint(response.json())
 
 def delete_mail(mail_id: str) -> None:
     """TODO: fill out this docstring (using the send_mail docstring as a guide)
+
+        Removes the the details and message of a specific piece of mail specified by the inputted string. The JSON body of the request contains the following key:
+        -mail_id
+
+    Args:
+        mail_id(str): The unique id associated to each piece of mail sent.
+
+    Returns:
+        This function returns None
     """
     response = requests.delete(f'{SERVER}/mail/{mail_id}')
     pprint.pprint(response.json())

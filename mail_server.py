@@ -26,31 +26,31 @@ def save_mail(mail: List[Dict[str, str]]) -> None:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
     
     Parameters: 
-        The save_mail method takes in list of dictionaries called mail
+        save_mail() takes in a list of dictionaries called mail
 
     Functionality:
-        It seems like the code takes in the list of dictionaries and uses joinpath method to
-        to create a file path with the present directory and the write_text is used to write 
-        the list of dictionaries to a json file which json.dump() helps with by converting the 
+        This portion of code takes in the list of dictionaries and uses the joinpath method to
+        to create a file path with the present directory. Then, the write_text method is called, which writes
+        the list of dictionaries to a json file. Within the argument of write_text, json.dump() converts the 
         python objects in the list into json objects.
 
     Returns: 
-        the function returns none which means nothing is returned
+        Since the function returns "None", nothing is returned by the function save_mail
     """ 
     thisdir.joinpath('mail_db.json').write_text(json.dumps(mail, indent=4))
 
 def add_mail(mail_entry: Dict[str, str]) -> str:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
      Parameters: 
-        The add_mail method takes in a dictionary called mail_entry
+        The add_mail() method takes in a dictionary called mail_entry
 
     Functionality:
-       It loads in the mail that is already on the json file and then adds the parameter,
-       mail_entry by using append. Then it assigns a unique id for the mail entry and then 
-       saves the list of mail back to the json file.
+       add_mail first loads the mail that is already in the json file. Next, it adds that parameter 
+       contained in "mail_entry" using the append method. It then assigned a unique id for the selected mail entry.
+       Finally, it saved the list of mail into the json file.
 
     Returns: 
-        the function returns a string back which is a unique id for ther mail entry
+        The add_mail function returns a string serving as a unique id for the mail entry
 
     """
     mail = load_mail()
@@ -62,16 +62,15 @@ def add_mail(mail_entry: Dict[str, str]) -> str:
 def delete_mail(mail_id: str) -> bool:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
     Parameters: 
-        The delete_mail function takes in a string called mail_id which is the unique id that
-        each mail gets
+        The delete_mail function takes in a string called mail_id, which is the unique id associated with each separate piece of mail
 
     Functionality:
-        The function takes in the mail id and checks if the pail id exists by going throigh 
-        the entire list of the id. If the id is found, it deletes the mail of the list, and then
-        saves the list back into the json file
+        The function takes in the unique id checks if the it exists within the mail_id list. If it does exist within mail_id,
+        the function pops it from the stack, effectively deleting it. Then it saves the updated mail list using the save_mail() function.
+        
     
     Returns: 
-        returns true if mail was successfully deleted or false if it wasn't
+        Returns True if the mail_id did exist and has been removed from the mail() list, or False if the mail_id did not exist in the mail() list
     """
     mail = load_mail()
     for i, entry in enumerate(mail):
@@ -89,13 +88,12 @@ def get_mail(mail_id: str) -> Optional[Dict[str, str]]:
         each mail gets
 
     Functionality:
-        The function takes in the mail id and checks if the pail id exists by going throigh 
-        the entire list of the id. If the id is found, it prints the mail that the id that 
-        it corresponds with
+        get_mail takes in a specific mail_id string and checks if said mail_id exists by going through the entire
+        mail list. If the unique id is found in mail, the function prints the mail corresponding to the unique id.
     
     Returns: 
-        The function returns an optional meaning that though it says it returns a dictionary,
-        an optional allows None to be returned too
+        The function returns an optional. Therefore, if the mail_id is found in the mail list, get_mail() will output the mail corresponding to that mail_id.
+        If the mail_id is not found in the list, it will return None. 
     """
     mail = load_mail()
     for entry in mail:
@@ -107,16 +105,15 @@ def get_mail(mail_id: str) -> Optional[Dict[str, str]]:
 def get_inbox(recipient: str) -> List[Dict[str, str]]:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
     Parameters: 
-        The get_inbox function takes in string called recipient 
+        The get_inbox function takes in a string initialized as "recipient"
 
     Functionality:
-        The function loads in the mail from the json file and initalizes a list called inbox. Afterwards, it
-        checks if the list from the json has the recipient that was given in the parameters and appends it to 
-        the inbox list. Afterwards, it returns all the emails that have that specific recipient associated 
-        to it
+        First, the function loads in the mail from the json file using the load_mail() function. Then, a list called "inbox" is initialized. Next, the function
+        checks if the list from the json file has has the recipient named in the parameters. If it does, the function appends it to 
+        the inbox list. After this, the function returns all the emails tied to the specific recipient requested.
     
     Returns: 
-        the function return a list of dictionarys which contain emails associated to the recipient
+        get_inox() return a list of dictionarys called "inbox", which contains all the emails sent to the user specified by the "recipient" string.
     """
     mail = load_mail()
     inbox = []
@@ -129,16 +126,15 @@ def get_inbox(recipient: str) -> List[Dict[str, str]]:
 def get_sent(sender: str) -> List[Dict[str, str]]:
     """TODO: fill out this docstring (using the load_mail docstring as a guide)
     Parameters: 
-        The get_sent function takes in string called sender
+        The get_sent function takes in a string initialized as "sender"
 
     Functionality:
-        The function loads in the mail from the json file and initalizes a list called sent. Afterwards, it
-        checks if the list from the json has the specific sender that was given in the parameters and appends 
-        it to the inbox list. Afterwards, it returns all the emails that have that specific sender associated 
-        to it
+        The get_sent() first loads in the mail list from the json file. Then, it initalizes a list called sent. Afterwards, it
+        checks if the mail list has the sender specified in the parameters. If it does, it appends every mail entry sent by the specified sender
+        to the inbox list. It then returns all the emails associated to that specific sender.
     
     Returns: 
-        the function return a list of dictionarys which contain emails associated to the sender
+        the get_sent() function returns a list of dictionarys containing all the emails previously sent by the specified sender
     """
     mail = load_mail()
     sent = []
