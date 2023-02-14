@@ -22,7 +22,7 @@ specific and unique elements to each piece of mail sent to all the client.
 
 Answer for Question 3:
 
-
+One common REST method not used in our mail server is PUT. PUT is used "to update existing resources on the server". PUT could be implemented into the program by writing a method/function that forwards an existing message to a new recipient, or even to CC/BCC a recipient to a message.
 
 Answer for Question 4:
 
